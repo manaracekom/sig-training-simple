@@ -1,6 +1,8 @@
 package eu.sig.training.ch04;
 
 public class Accounts {
+
+    Money balance = new Money();
     @SuppressWarnings("unused")
     public static CheckingAccount findAcctByNumber(String number) {
         return new CheckingAccount();
@@ -15,4 +17,13 @@ public class Accounts {
         return sum % 11 == 0;
     }
     // end::isValid[]
+
+    void addInterest(float interestPercentage) {
+        Money interest = balance.multiply(interestPercentage);
+        if (interest.greaterThan(0)) {
+            balance.add(interest);
+        } else {
+            balance.substract(interest);
+        }
+    }
 }
